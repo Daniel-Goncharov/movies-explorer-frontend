@@ -1,0 +1,111 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__link_type_signup {
+  margin-right: 30px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  transition: all .5s, .5s ease;
+}
+
+.navigation__link_type_signup:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__link_type_signup {
+    margin-right: 14px;
+    font-size: 10px;
+  }
+}
+
+.navigation__link_type_signin {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 3px;
+  background-color: #3DDC84;
+  transition: all .5s, .5s ease;
+}
+
+.navigation__link_type_signin:hover {
+  color: #fff;
+  background-color: #1a027a;
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__link_type_signin {
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+}
+
+.navigation__container_type_loged-in {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1058px;
+}
+
+.navigation__link_type_account {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 20px;
+  background-color: #313131;
+  transition: all .5s, .5s ease;
+}
+
+.navigation__link_type_account:hover {
+  background-color: #fff;
+  color: #313131;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__link_type_movie {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  transition: all .5s, .5s ease;
+}
+
+.navigation__link_type_movie:hover {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  opacity: 0.6;
+}
+
+.navigation__link_type_favorite-movie {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  transition: all .5s, .5s ease;
+  margin-left: 16px;
+}
+
+.navigation__link_type_favorite-movie:hover {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  opacity: 0.6;
+}
+
+.navigation__container_type_loged-out {
+  justify-content: flex-end;
+}
+

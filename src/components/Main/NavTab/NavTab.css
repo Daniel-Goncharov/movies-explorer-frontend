@@ -1,0 +1,43 @@
+.NavTab {
+  padding-bottom: 30px;
+}
+
+@media screen and (max-width: 320px) {
+  .NavTab {
+    padding-bottom: 17px;
+  }
+}
+
+.NavTab__container {
+  margin: 0 auto;
+  max-width: 308px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 96px);
+  column-gap: 10px;
+}
+
+@media screen and (max-width: 320px) {
+  .NavTab__container {
+    max-width: 258px;
+    grid-template-columns: repeat(3, 82px);
+    column-gap: 6px;
+  }
+}
+
+.NavTab__link {
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background-color: #303030;
+  padding: 10px 17px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 320px) {
+  .NavTab__link {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+}

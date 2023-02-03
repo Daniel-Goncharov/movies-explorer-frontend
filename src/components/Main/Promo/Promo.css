@@ -1,0 +1,68 @@
+.Promo {
+  max-width: 1280px;
+  width: 100%;
+  padding: 20px 40px 0;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .Promo {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 605px) {
+  .Promo {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Promo {
+    padding-top: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+.Promo__container {
+
+  width: 100%;
+  background-color: #272727;
+  border-radius: 10px;
+}
+
+.Promo-title {
+  margin: 0;
+  padding: 160px 235px 151px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 1024px) {
+  .Promo-title {
+    padding: 350px 24px 314px;
+    font-size: 40px;
+    line-height: 52px;
+  }
+}
+
+@media screen and (max-width: 605px) {
+  .Promo-title {
+    padding: 250px 0px 260px;
+    font-size: 29px;
+    line-height: 37px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Promo-title {
+    padding: 220px 0px 255px;
+  }
+}

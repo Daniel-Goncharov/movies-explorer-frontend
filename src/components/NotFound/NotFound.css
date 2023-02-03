@@ -1,0 +1,17 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  text-align: center;
+}
+
+.error_code {
+  font-size: 140px;
+  line-height: 169px;
+}
+
+.error_message {
+  font-size: 16px;
+  line-height: 19px;
+}
