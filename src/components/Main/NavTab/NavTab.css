@@ -1,14 +1,8 @@
-.NavTab {
+.navTab {
   padding-bottom: 30px;
 }
 
-@media screen and (max-width: 320px) {
-  .NavTab {
-    padding-bottom: 17px;
-  }
-}
-
-.NavTab__container {
+.navTab__list {
   margin: 0 auto;
   max-width: 308px;
   width: 100%;
@@ -17,27 +11,36 @@
   column-gap: 10px;
 }
 
-@media screen and (max-width: 320px) {
-  .NavTab__container {
-    max-width: 258px;
-    grid-template-columns: repeat(3, 82px);
-    column-gap: 6px;
-  }
-}
-
-.NavTab__link {
+.navTab__link {
+  display: block;
   text-align: center;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   background-color: #303030;
-  padding: 10px 17px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-radius: 10px;
 }
 
-@media screen and (max-width: 320px) {
-  .NavTab__link {
-    padding: 10px 12px;
+.navTab__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 375px) {
+  .navTab {
+    padding-bottom: 17px;
+  }
+
+  .navTab__list {
+    max-width: 258px;
+    grid-template-columns: repeat(3, 82px);
+    column-gap: 6px;
+  }
+
+  .navTab__link {
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 10px;
   }
 }
