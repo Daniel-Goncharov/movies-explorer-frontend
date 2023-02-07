@@ -1,0 +1,40 @@
+.navigation_type_unauthorized {
+  justify-content: flex-end;
+}
+
+.navigation__link-unauthorized {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 30px;
+}
+
+.navigation__link-unauthorized:hover {
+  opacity: 0.7;
+}
+
+.navigation__button-signin {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 3px;
+  background-color: #3DDC84;
+}
+
+.navigation__button-signin:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 560px) {
+  .navigation__link-unauthorized {
+    margin-right: 14px;
+    font-size: 10px;
+  }
+
+  .navigation__button-signin {
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+}

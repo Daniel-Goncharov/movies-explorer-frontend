@@ -8,7 +8,7 @@ import Footer from "../Layout/Footer/Footer";
 export default function Main() {
   return (
     <>
-      <Header/>
+      <Header isLoggedIn={false}/>
       <Promo/>
       <AboutProject/>
       <Techs/>

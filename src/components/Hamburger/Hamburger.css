@@ -1,0 +1,102 @@
+.hamburger {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  gap: 7px;
+  border: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-self: flex-end;
+  justify-content: center;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  z-index: 3;
+}
+
+.hamburger::before,
+.hamburger::after,
+.hamburger span {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: #fff;
+}
+
+.hamburger_open {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+.hamburger_open span,
+.hamburger_open::before,
+.hamburger_open::after {
+  transition: all 250ms;
+}
+
+.hamburger_close span,
+.hamburger_close::before,
+.hamburger_close::after {
+  transition: all 250ms;
+}
+
+.hamburger_open::before {
+  transform: translateY(10px) rotateZ(45grad);
+  width: 22px;
+}
+
+.hamburger_open span {
+  opacity: 0;
+}
+
+.hamburger_open::after {
+  width: 22px;
+  transform: translateY(-10px) rotateZ(-45grad);
+}
+
+.hamburger_close::before {
+  transform: translateY(0) rotateZ(0);
+  width: 28px;
+}
+
+.hamburger_close span {
+  opacity: 1;
+}
+
+.hamburger_close::after {
+  width: 28px;
+  transform: translateY(0) rotateZ(0);
+}
+
+@media screen and (max-width: 560px) {
+  .hamburger {
+    right: 23px;
+    top: 27px;
+    width: 22px;
+    height: 22px;
+    gap: 6.5px;
+  }
+
+  .hamburger::before,
+  .hamburger::after,
+  .hamburger span {
+    width: 22px;
+    height: 2.5px;
+  }
+
+  .hamburger_open::before {
+    transform: translateY(0) translateX(5px) rotateZ(50grad);
+    width: 21px;
+    height: 3px;
+  }
+
+  .hamburger_open::after {
+    width: 21px;
+    transform: translateY(-18px) translateX(5px) rotateZ(-50grad);
+    height: 3px;
+  }
+}
