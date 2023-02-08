@@ -31,16 +31,3 @@
 .navigation__link-authorized:hover {
   opacity: 0.7;
 }
-
-.navigation__button-account {
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: 500;
-  padding: 8px 20px;
-  border-radius: 20px;
-  background-color: #313131;
-}
-
-.navigation__button-account:hover {
-  opacity: 0.8;
-}

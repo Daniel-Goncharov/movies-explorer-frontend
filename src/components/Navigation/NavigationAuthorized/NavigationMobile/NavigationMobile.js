@@ -2,6 +2,7 @@ import './NavigationMobile.css';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Hamburger from '../../../Hamburger/Hamburger';
+import Button from '../../../Button/Button';
 
 export default function NavigationMobile() {
   const [isHamburgerActive, setIsHamburgerActive] = useState(false);
@@ -26,7 +27,11 @@ export default function NavigationMobile() {
               <Link to="/saved-movies" className="navigation__link-authorized-mobile">Сохранённые фильмы</Link>
             </li>
           </ul>
-          <Link to="#" className="navigation__button-account">Аккаунт</Link>
+          <Link to="#">
+            <Button className="navigation__button-account">
+              <span>Аккаунт</span>
+            </Button>
+          </Link>
         </nav>
       </div>
     </>

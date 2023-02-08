@@ -1,6 +1,7 @@
 import Navigation from '../../Navigation/Navigation';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import Logo from '../../Logo/Logo';
 
 export default function Header({isLoggedIn}) {
 
@@ -8,7 +9,7 @@ export default function Header({isLoggedIn}) {
     <header className="header">
       <div className="header_container">
         <Link to="/">
-          <div className="header_logo"/>
+          <Logo/>
         </Link>
         <Navigation isLoggedIn={isLoggedIn}/>
       </div>

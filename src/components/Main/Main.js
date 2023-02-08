@@ -9,11 +9,13 @@ export default function Main() {
   return (
     <>
       <Header isLoggedIn={false}/>
-      <Promo/>
-      <AboutProject/>
-      <Techs/>
-      <AboutMe/>
-      <Footer/>
+      <main className="main">
+        <Promo/>
+        <AboutProject/>
+        <Techs/>
+        <AboutMe/>
+        <Footer/>
+      </main>
     </>
   )
 }
