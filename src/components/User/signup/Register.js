@@ -28,10 +28,12 @@ export default function Login() {
   }
 
   return (
-    <section className='regisrer'>
-      <Logo/>
-      <form name="signup" method="post" onSubmit={handleSubmit} className='auth__form'>
-        <h1 className='form__title'>Добро пожаловать!</h1>
+    <section className="regisrer">
+      <Link to="/">
+        <Logo/>
+      </Link>
+      <form name="signup" method="post" onSubmit={handleSubmit} className="auth__form">
+        <h1 className="form__title">Добро пожаловать!</h1>
         <CustomInput
           name="name"
           placeholder="Имя"

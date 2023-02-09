@@ -18,7 +18,7 @@ export default function NavigationMobile() {
         <nav className="navigation navigation__type_authorized-mobile">
           <ul className="navigation__link-list_type_authorized-mobile">
             <li>
-              <Link to="/movies" className="navigation__link-authorized-mobile">Главная</Link>
+              <Link to="/" className="navigation__link-authorized-mobile">Главная</Link>
             </li>
             <li>
               <Link to="/movies" className="navigation__link-authorized-mobile navigation__link-authorized-mobile_active">Фильмы</Link>

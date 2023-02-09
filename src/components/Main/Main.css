@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  padding: 20px 0 120px;
+}
+
+@media screen and (max-width: 1024px) {
+  .main {
+    padding-bottom: 86px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .main {
+    padding-top: 14px;
+    padding-bottom: 69px;
+  }
+}

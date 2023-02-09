@@ -81,6 +81,17 @@
   justify-self: end;
 }
 
+.search-form__resalt-null {
+  display: none;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.search-form__resalt-null_active {
+  display: block;
+}
+
 @media screen and (max-width: 768px) {
   .search-form-wrap {
     height: 182px;

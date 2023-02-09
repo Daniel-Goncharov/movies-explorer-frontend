@@ -1,6 +1,6 @@
 import './Hamburger.css';
 
-const Hamburger = ({ onClick, isActive }) => {
+export default function Hamburger({ onClick, isActive }) {
   return (
     <button
       className={`hamburger ${isActive ? 'hamburger_open' : 'hamburger_close'}`}
@@ -11,5 +11,3 @@ const Hamburger = ({ onClick, isActive }) => {
     </button>
   );
 };
-
-export default Hamburger;

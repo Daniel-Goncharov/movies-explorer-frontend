@@ -1,9 +1,11 @@
-import Header from "../Layout/Header/Header";
-import Promo from "./Promo/Promo";
-import AboutProject from "./AboutProject/AboutProject";
-import Techs from "./Techs/Techs";
-import AboutMe from "./AboutMe/AboutMe";
-import Footer from "../Layout/Footer/Footer";
+import './Main.css';
+import Header from '../Layout/Header/Header';
+import Promo from './Promo/Promo';
+import AboutProject from './AboutProject/AboutProject';
+import Techs from './Techs/Techs';
+import AboutMe from './AboutMe/AboutMe';
+import Footer from '../Layout/Footer/Footer';
+
 
 export default function Main() {
   return (
@@ -14,8 +16,8 @@ export default function Main() {
         <AboutProject/>
         <Techs/>
         <AboutMe/>
-        <Footer/>
       </main>
+      <Footer/>
     </>
   )
 }
