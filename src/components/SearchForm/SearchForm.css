@@ -48,6 +48,7 @@
   border: none;
   max-width: 740px;
   width: 100%;
+  outline: none;
 }
 
 .search-form__input::placeholder {

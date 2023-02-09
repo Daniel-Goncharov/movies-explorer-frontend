@@ -1,0 +1,31 @@
+.regisrer {
+  min-height: 100vh;
+  max-width: 396px;
+  width: 100%;
+  padding: 70px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button_type_regisrer {
+  margin-top: 128px;
+}
+
+@media screen and (max-width: 1024px) {
+  .regisrer {
+    padding-top: 232px;
+    padding-bottom: 232px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .regisrer {
+    padding: 56px 30px 30px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .submit-button_type_regisrer {
+    margin-top: 216px;
+  }
+}

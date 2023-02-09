@@ -1,6 +1,6 @@
 import './CustomInput.css';
 
-export default function MyInput ({ type = 'text', name, placeholder, value = '', handler, min, max, required = true, errorText = '' }) {
+export default function CustomInput ({ type = 'text', name, placeholder, value = '', handler, min, max, required = true, errorText = '' }) {
   return (
     <label className="custom-input">
       <span className="custom-input__label">{placeholder}</span>

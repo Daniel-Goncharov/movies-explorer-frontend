@@ -1,9 +1,9 @@
 import './Profile.css';
 import {useEffect, useState} from 'react';
-import Header from '../../Layout/Header/Header';
-import MyInput from '../../CustomInput/CustomInput';
-import Button from '../../Button/Button';
 import {useNavigate} from 'react-router-dom';
+import Header from '../../Layout/Header/Header';
+import CustomInput from '../../CustomInput/CustomInput';
+import Button from '../../Button/Button';
 import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
 
 export default function ProfilePage() {
@@ -48,7 +48,7 @@ export default function ProfilePage() {
             <h1 className="profile__title">Привет, {user.name}!</h1>
             {isEditable ?
               (<div className="profile__inputs-group">
-                <MyInput
+                <CustomInput
                   name="name"
                   placeholder="Имя"
                   handler={handleChange}
@@ -57,7 +57,7 @@ export default function ProfilePage() {
                   errorText={errors.name}
                   value={values.name}
                 />
-                <MyInput
+                <CustomInput
                   name="email"
                   placeholder="E-mail"
                   handler={handleChange}
@@ -80,7 +80,7 @@ export default function ProfilePage() {
             }
               {isEditable ? <div className="profile__buttons-group-edit">
                               <span className="profile__error">При обновлении профиля произошла ошибка.</span>
-                              <Button type="submit" className="profile__button profile__button_type_save">Сохранить</Button>
+                              <Button type="submit" className="submit-button">Сохранить</Button>
                             </div>
                           : <div className="profile__buttons-group">
                               <Button className="profile__button" onClick={handleEdit}>Редактировать</Button>
