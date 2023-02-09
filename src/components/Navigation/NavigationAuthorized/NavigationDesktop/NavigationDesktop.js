@@ -13,7 +13,7 @@ export default function NavigationDesktop() {
           <Link to="/saved-movies" className="navigation__link-authorized">Сохранённые фильмы</Link>
         </li>
       </ul>
-      <Link to="#">
+      <Link to="/profile">
         <Button className="navigation__button-account">
           <span>Аккаунт</span>
         </Button>

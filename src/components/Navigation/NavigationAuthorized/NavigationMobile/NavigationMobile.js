@@ -27,7 +27,7 @@ export default function NavigationMobile() {
               <Link to="/saved-movies" className="navigation__link-authorized-mobile">Сохранённые фильмы</Link>
             </li>
           </ul>
-          <Link to="#">
+          <Link to="/profile">
             <Button className="navigation__button-account">
               <span>Аккаунт</span>
             </Button>
