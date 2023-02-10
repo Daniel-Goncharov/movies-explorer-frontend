@@ -26,48 +26,48 @@
   background-color: #fff;
 }
 
-.hamburger_open {
+.hamburger_type_open {
   position: fixed;
   top: 16px;
   right: 16px;
 }
 
-.hamburger_open span,
-.hamburger_open::before,
-.hamburger_open::after {
+.hamburger_type_open span,
+.hamburger_type_open::before,
+.hamburger_type_open::after {
   transition: all 250ms;
 }
 
-.hamburger_close span,
-.hamburger_close::before,
-.hamburger_close::after {
+.hamburger_type_close span,
+.hamburger_type_close::before,
+.hamburger_type_close::after {
   transition: all 250ms;
 }
 
-.hamburger_open::before {
+.hamburger_type_open::before {
   transform: translateY(10px) rotateZ(45grad);
   width: 22px;
 }
 
-.hamburger_open span {
+.hamburger_type_open span {
   opacity: 0;
 }
 
-.hamburger_open::after {
+.hamburger_type_open::after {
   width: 22px;
   transform: translateY(-10px) rotateZ(-45grad);
 }
 
-.hamburger_close::before {
+.hamburger_type_close::before {
   transform: translateY(0) rotateZ(0);
   width: 28px;
 }
 
-.hamburger_close span {
+.hamburger_type_close span {
   opacity: 1;
 }
 
-.hamburger_close::after {
+.hamburger_type_close::after {
   width: 28px;
   transform: translateY(0) rotateZ(0);
 }
@@ -88,13 +88,13 @@
     height: 2.5px;
   }
 
-  .hamburger_open::before {
+  .hamburger_type_open::before {
     transform: translateY(0) translateX(5px) rotateZ(50grad);
     width: 21px;
     height: 3px;
   }
 
-  .hamburger_open::after {
+  .hamburger_type_open::after {
     width: 21px;
     transform: translateY(-18px) translateX(5px) rotateZ(-50grad);
     height: 3px;

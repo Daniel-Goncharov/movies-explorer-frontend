@@ -23,7 +23,7 @@ export default function MoviesCard({ card, isSavedMovies = false }) {
                             : "movies-card__icon-favorite"}
           `}/>
       </div>
-      <img src={ card.thumbnail } alt={ card.nameRU } className="movies-card_image"/>
+      <img src={ card.thumbnail } alt={ card.nameRU } className="movies-card__image"/>
     </li>
   )
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <footer className="footer">
-      <h2 className="footer__about">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+      <h3 className="footer__about">Учебный проект Яндекс.Практикум х BeatFilm.</h3>
       <div className="footer__decoration-line"></div>
       <div className="footer__container">
         <p className="copyright">&copy;</p>

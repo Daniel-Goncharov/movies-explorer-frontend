@@ -32,7 +32,7 @@ export default function Login() {
       <Link to="/">
         <Logo/>
       </Link>
-      <form name="signup" method="post" onSubmit={handleSubmit} className="auth__form">
+      <form name="signup" method="post" onSubmit={handleSubmit} className="form">
         <h1 className="form__title">Добро пожаловать!</h1>
         <CustomInput
           name="name"

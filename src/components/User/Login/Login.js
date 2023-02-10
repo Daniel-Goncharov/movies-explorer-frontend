@@ -31,7 +31,7 @@ export default function Login() {
       <Link to="/">
         <Logo/>
       </Link>
-      <form name="signin" method="post" onSubmit={handleSubmit} className="auth__form">
+      <form name="signin" method="post" onSubmit={handleSubmit} className="form">
         <h1 className="form__title">Рады видеть!</h1>
         <CustomInput
           name="email"

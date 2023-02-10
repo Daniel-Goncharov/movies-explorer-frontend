@@ -5,7 +5,7 @@ import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import Register from '../User/signup/Register';
+import Register from '../User/Register/Register';
 import Login from '../User/Login/Login';
 
 function App() {

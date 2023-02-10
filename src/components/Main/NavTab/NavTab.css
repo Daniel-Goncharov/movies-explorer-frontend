@@ -1,8 +1,8 @@
-.navTab {
+.nav-tab {
   padding-bottom: 30px;
 }
 
-.navTab__list {
+.nav-tab__list {
   margin: 0 auto;
   max-width: 308px;
   width: 100%;
@@ -11,7 +11,7 @@
   column-gap: 10px;
 }
 
-.navTab__link {
+.nav-tab__link {
   display: block;
   text-align: center;
   font-weight: 500;
@@ -23,22 +23,22 @@
   border-radius: 10px;
 }
 
-.navTab__link:hover {
+.nav-tab__link:hover {
   opacity: 0.7;
 }
 
 @media screen and (max-width: 375px) {
-  .navTab {
+  .nav-tab {
     padding-bottom: 17px;
   }
 
-  .navTab__list {
+  .nav-tab__list {
     max-width: 258px;
     grid-template-columns: repeat(3, 82px);
     column-gap: 6px;
   }
 
-  .navTab__link {
+  .nav-tab__link {
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 10px;

@@ -56,17 +56,11 @@
   }
 
   .stack-list__item {
+    max-width: 84px;
     font-size: 12px;
     line-height: 15px;
     padding-top: 21px;
     padding-bottom: 21px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .stack-list__item {
-    max-width: 84px;
-    width: 100%;
   }
 
   .techs__title {
@@ -84,13 +78,13 @@
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 767px) {
   .techs {
     padding: 70px 18px;
   }
 
   .stack-list {
-    max-width: calc(178px + 13 * ((100vw - 320px) / (560 - 320)));
+    max-width: calc(178px + 13 * ((100vw - 320px) / (767 - 320)));
     margin: 0 auto;
     width: 100%;
     display: grid;
@@ -112,14 +106,14 @@
   .techs__title {
     margin-top: 89px;
     margin-bottom: 24px;
-    font-size: calc(30px + 20 * ((100vw - 320px) / (560 - 320)));
-    line-height: calc(36px + 22 * ((100vw - 320px) / (560 - 320)));
+    font-size: calc(30px + 20 * ((100vw - 320px) / (767 - 320)));
+    line-height: calc(36px + 22 * ((100vw - 320px) / (767 - 320)));
   }
 
   .thechs__subtitle {
     margin-bottom: 50px;
     width: 100%;
-    font-size: calc(11px + 1 * ((100vw - 320px) / (560 - 320)));
-    line-height: calc(16px + 2 * ((100vw - 320px) / (560 - 320)));
+    font-size: calc(11px + 1 * ((100vw - 320px) / (767 - 320)));
+    line-height: calc(16px + 2 * ((100vw - 320px) / (767 - 320)));
   }
 }

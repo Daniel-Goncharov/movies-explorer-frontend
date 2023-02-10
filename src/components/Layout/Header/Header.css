@@ -7,7 +7,7 @@
   padding: 18px 70px;
 }
 
-.header_container {
+.header__container {
   width: 100%;
   display: grid;
   grid-template-columns: 38px auto;

@@ -2,16 +2,16 @@ import './NavTab.css';
 
 export default function NavTab() {
   return (
-  <nav className="navTab">
-    <ul className="navTab__list">
-      <li className="navTab__list-item">
-        <a href="#aboutProject" className="navTab__link">О проекте</a>
+  <nav className="nav-tab">
+    <ul className="nav-tab__list">
+      <li className="nav-tab__list-item">
+        <a href="#aboutProject" className="nav-tab__link">О проекте</a>
       </li>
-      <li className="navTab__list-item">
-        <a href="#techs" className="navTab__link">Технологии</a>
+      <li className="nav-tab__list-item">
+        <a href="#techs" className="nav-tab__link">Технологии</a>
       </li>
-      <li className="navTab__list-item">
-        <a href="#aboutMe" className="navTab__link">Студент</a>
+      <li className="nav-tab__list-item">
+        <a href="#aboutMe" className="nav-tab__link">Студент</a>
       </li>
     </ul>
   </nav>

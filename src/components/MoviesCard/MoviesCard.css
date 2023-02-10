@@ -63,7 +63,7 @@
   background-image: url(../../images/icon-delete.svg);
 }
 
-.movies-card_image {
+.movies-card__image {
   width: 364px;
   height: 203px;
   object-fit: cover;
@@ -74,7 +74,7 @@
     grid-template-rows: 1fr 190px;
   }
 
-  .movies-card_image {
+  .movies-card__image {
     width: 339px;
     height: 190px;
   }
@@ -85,7 +85,7 @@
     grid-template-rows: 1fr 168px;
   }
 
-  .movies-card_image {
+  .movies-card__image {
     width: 300px;
     height: 168px;
   }
