@@ -1,0 +1,128 @@
+.profile {
+  width: 100vw;
+  padding: 74px 0 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__form {
+  max-width: 410px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.profile__title {
+  margin: 0 0 124px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.profile__list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0 0 219px;
+}
+
+.profile__list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__list-item:first-child {
+  padding-top: 0;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__list-item:last-child {
+  padding-top: 18px;
+  padding-bottom: 0;
+}
+
+.profile__buttons-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile__button {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile__button:hover {
+  opacity: 0.8;
+}
+
+.profile__button_type_signout {
+  font-weight: 500;
+  color: #ee3465;
+}
+
+.profile__inputs-group {
+  margin-bottom: 189px;
+}
+
+.profile__buttons-group-edit {
+  display: grid;
+  grid-template-rows: 14px 45px;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile__error {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #FF004C;
+  visibility: hidden;
+}
+
+.profile__error_active {
+  visibility: visible;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile {
+    padding-top: 236px;
+    padding-bottom: 269px;
+  }
+
+  .profile__title {
+    margin-bottom: 97px;
+  }
+
+  .profile__list {
+    margin-bottom: 209px;
+  }
+
+  .profile__inputs-group {
+    margin-bottom: 144px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    padding: 70px 30px 40px;
+  }
+
+  .profile__title {
+    margin-bottom: 81px;
+  }
+}

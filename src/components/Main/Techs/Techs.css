@@ -1,0 +1,119 @@
+.techs {
+  max-width: 1280px;
+  width: 100%;
+  padding: 100px 70px;
+  margin: 0 auto;
+  background-color: #272727;
+}
+
+.techs__title {
+  margin-top: 114px;
+  margin-bottom: 26px;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+.thechs__subtitle {
+  margin: 0 auto 100px;
+  width: 460px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+.stack-list {
+  display: flex;
+  justify-content: center;
+}
+
+.stack-list__item {
+  max-width: 90px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  background-color: #303030;
+  border-radius: 10px;
+  padding-top: 21px;
+  padding-bottom: 22px;
+  margin-right: 10px;
+}
+
+.stack-list__item:last-of-type {
+  margin-right: 0px;
+}
+
+@media screen and (max-width: 1024px) {
+  .techs {
+    padding: 90px 50px;
+  }
+
+  .stack-list__item {
+    max-width: 84px;
+    font-size: 12px;
+    line-height: 15px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+  }
+
+  .techs__title {
+    margin-top: 104px;
+    margin-bottom: 22px;
+  }
+
+  .thechs__subtitle {
+    margin-bottom: 83px;
+    max-width: 460px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .techs {
+    padding: 70px 18px;
+  }
+
+  .stack-list {
+    max-width: calc(178px + 13 * ((100vw - 320px) / (767 - 320)));
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 57px;
+    gap: 10px 10px;
+    justify-items: stretch;
+  }
+
+  .stack-list__item {
+    max-width: inherit;
+    width: 100%;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    margin-right: 0;
+  }
+
+  .techs__title {
+    margin-top: 89px;
+    margin-bottom: 24px;
+    font-size: calc(30px + 20 * ((100vw - 320px) / (767 - 320)));
+    line-height: calc(36px + 22 * ((100vw - 320px) / (767 - 320)));
+  }
+
+  .thechs__subtitle {
+    margin-bottom: 50px;
+    width: 100%;
+    font-size: calc(11px + 1 * ((100vw - 320px) / (767 - 320)));
+    line-height: calc(16px + 2 * ((100vw - 320px) / (767 - 320)));
+  }
+}

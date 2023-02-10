@@ -1,0 +1,22 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__button-account {
+  width: 100px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 8px 0;
+  border: none;
+  border-radius: 20px;
+  background-color: #313131;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navigation__button-account:hover {
+  opacity: 0.8;
+}

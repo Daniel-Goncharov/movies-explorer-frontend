@@ -1,0 +1,48 @@
+.movies {
+  max-width: 1280px;
+  width: 100%;
+  padding: 70px 70px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.movies__button {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+  background-color: #202020;
+  border: 1px solid #424242;
+  border-radius: 5px;
+  width: 320px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.movies__button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1024px) {
+  .movies {
+    padding-top: 80px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .movies {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .movies__button {
+    width: calc(240px + 80 * ((100vw - 320px) / (600 - 320)));
+  }
+}

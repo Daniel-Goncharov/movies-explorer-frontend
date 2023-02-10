@@ -1,0 +1,33 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__type_authorized-desktop {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1058px;
+}
+
+.navigation__link-list {
+  width: 212px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation__link-authorized {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.navigation__link-authorized_active {
+  font-weight: 500;
+}
+
+.navigation__link-authorized:hover {
+  opacity: 0.7;
+}
