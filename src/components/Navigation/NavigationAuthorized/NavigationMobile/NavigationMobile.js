@@ -1,37 +1,59 @@
 import './NavigationMobile.css';
 import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Hamburger from '../../../Hamburger/Hamburger';
 import Button from '../../../Button/Button';
 
-export default function NavigationMobile() {
-  const [isHamburgerActive, setIsHamburgerActive] = useState(false);
-  const hamburgerOnClick = useCallback(() => {
-    setIsHamburgerActive(!isHamburgerActive);
-  },[isHamburgerActive, setIsHamburgerActive]);
-
+export default function NavigationMobile({ isMobileMenuActive, onOpenMenu, onClose }) {
   return (
     <>
-      <Hamburger onClick={hamburgerOnClick} isActive={isHamburgerActive}/>
-      <div className={`cover ${isHamburgerActive ? 'cover_active' : ''}`}/>
-      <div className={`navigation__container-mobile ${isHamburgerActive ? 'navigation__container-mobile_open' : 'navigation__container-mobile_closed'}`}>
+      <Hamburger onClick={onOpenMenu} isMobileMenuActive={isMobileMenuActive}/>
+      <div onClick={onClose} className={`cover ${isMobileMenuActive ? 'cover_active' : ''}`}/>
+      <div onClick={(evt) => evt.stopPropagation()} className={`navigation__container-mobile ${isMobileMenuActive ? 'navigation__container-mobile_open' : 'navigation__container-mobile_closed'}`}>
         <nav className="navigation navigation__type_authorized-mobile">
           <ul className="navigation__link-list_type_authorized-mobile">
             <li>
-              <Link to="/" className="navigation__link-authorized-mobile">Главная</Link>
+              <NavLink to="/"
+                onClick={onClose}
+                className={({ isActive }) =>
+                  isActive
+                    ? "navigation__link-authorized-mobile navigation__link-authorized-mobile_active"
+                    : "navigation__link-authorized-mobile"
+                }
+              >
+                Главная
+              </NavLink>
             </li>
             <li>
-              <Link to="/movies" className="navigation__link-authorized-mobile navigation__link-authorized-mobile_active">Фильмы</Link>
+              <NavLink to="/movies"
+                onClick={onClose}
+                className={({ isActive }) =>
+                isActive
+                  ? "navigation__link-authorized-mobile navigation__link-authorized-mobile_active"
+                  : "navigation__link-authorized-mobile"
+              }
+              >
+                Фильмы
+              </NavLink>
             </li>
             <li>
-              <Link to="/saved-movies" className="navigation__link-authorized-mobile">Сохранённые фильмы</Link>
+              <NavLink to="/saved-movies"
+                onClick={onClose}
+                className={({ isActive }) =>
+                isActive
+                  ? "navigation__link-authorized-mobile navigation__link-authorized-mobile_active"
+                  : "navigation__link-authorized-mobile"
+              }
+              >
+                Сохранённые фильмы
+              </NavLink>
             </li>
           </ul>
-          <Link to="/profile">
+          <NavLink to="/profile" onClick={onClose}>
             <Button className="navigation__button-account">
               <span>Аккаунт</span>
             </Button>
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </>

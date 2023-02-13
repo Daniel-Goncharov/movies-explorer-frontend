@@ -2,9 +2,7 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Button from '../Button/Button';
 
-export default function SearchForm() {
-  function handleChange(evt) {
-  }
+export default function SearchForm({ togleShortFilter }) {
 
   return (
     <>
@@ -16,7 +14,7 @@ export default function SearchForm() {
             <Button type="submit" className="search-form__button"/>
             <div className="vertical-decoration-line"/>
           </div>
-          <FilterCheckbox name="short" checked={true} label="Короткометражки" handler={handleChange} />
+          <FilterCheckbox name="short" checked={false} label="Короткометражки" handler={togleShortFilter} />
         </form>
       </div>
       <span className="search-form__resalt-null">По вашему запросу ничего не найдено</span>

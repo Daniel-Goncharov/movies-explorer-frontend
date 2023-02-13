@@ -69,6 +69,14 @@
   object-fit: cover;
 }
 
+.movies__link {
+  cursor: pointer;
+}
+
+.movies__link:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 1279px) {
   .movies-card {
     grid-template-rows: 1fr 190px;

@@ -1,12 +1,12 @@
 import './MoviesCardList.css'
-import MoviesCard from '../MoviesCard/MoviesCard'
-import { demoCard } from '../../utils/constant';
+import MoviesCard from '../MoviesCard/MoviesCard';
 
-export default function MoviesCardList({ isSavedMovies = false }) {
+export default function MoviesCardList({ isLoading, currentMovies, isSavedMovies = false }) {
   return (
+    isLoading ? '' :
     <ul className="movies-card-list">
-      {demoCard.map((item, index) => {
-        return <MoviesCard card={item} key={index} isSavedMovies={isSavedMovies} />;
+      {currentMovies.map((item, index) => {
+        return <MoviesCard movie={item} key={index} isSavedMovies={isSavedMovies} />;
       })}
     </ul>
   );

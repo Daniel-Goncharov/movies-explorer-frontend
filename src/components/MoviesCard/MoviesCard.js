@@ -1,8 +1,10 @@
 import './MoviesCard.css'
 import Button from '../Button/Button';
 import { useState } from 'react';
+import { moviesApi } from '../../utils/MoviesApi';
+import { Link } from 'react-router-dom';
 
-export default function MoviesCard({ card, isSavedMovies = false }) {
+export default function MoviesCard({ movie, isSavedMovies = false }) {
   const [isFavorite, setFavorite] = useState(false);
   function addToFavorite() {
     isFavorite ? setFavorite(false) : setFavorite(true);
@@ -12,8 +14,8 @@ export default function MoviesCard({ card, isSavedMovies = false }) {
     <li className="movies-card">
       <div className="movies-card__header">
         <div className="movies-card__description">
-          <h2 className="movies-card__title">{ card.nameRU }</h2>
-          <p className="movies-card__duration">{ card.duration }</p>
+          <h2 className="movies-card__title">{ movie.nameRU }</h2>
+          <p className="movies-card__duration">{ movie.duration }</p>
         </div>
         <Button type="button" onClick={addToFavorite} className={`
             movies-card__icon
@@ -23,7 +25,9 @@ export default function MoviesCard({ card, isSavedMovies = false }) {
                             : "movies-card__icon-favorite"}
           `}/>
       </div>
-      <img src={ card.thumbnail } alt={ card.nameRU } className="movies-card__image"/>
+      <Link to={movie.trailerLink} target="_blank" className="movies__link">
+        <img src={ movie.image.url ? moviesApi._baseUrl + movie.image.url : movie.image } alt={ movie.nameRU } className="movies-card__image"/>
+      </Link>
     </li>
   )
 }
