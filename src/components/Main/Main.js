@@ -7,7 +7,7 @@ import AboutMe from './AboutMe/AboutMe';
 import Footer from '../Layout/Footer/Footer';
 
 
-export default function Main({ isLoggedIn, isMobileMenuActive, onOpenMenu, onClose }) {
+export default function Main({ isLoggedIn, isMobileMenuActive, onOpenMenu, onClose, windowSize }) {
   return (
     <>
       <Header
@@ -15,6 +15,7 @@ export default function Main({ isLoggedIn, isMobileMenuActive, onOpenMenu, onClo
         isMobileMenuActive={isMobileMenuActive}
         onOpenMenu={onOpenMenu}
         onClose={onClose}
+        windowSize={windowSize}
       />
       <main className="main">
         <Promo/>

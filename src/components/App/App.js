@@ -3,6 +3,7 @@ import fetchIsFail from '../../images/Badrequest.svg';
 import fetchIsOk from '../../images/Goodrequest.svg';
 import React, { useEffect, useState, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import useWindowSize from '../../vendor/hooks/useWindowSize';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Profile from '../User/Profile/Profile';
 import Main from '../Main/Main';
@@ -13,11 +14,29 @@ import Register from '../User/Register/Register';
 import Login from '../User/Login/Login';
 import InfoToolTip from '../InfoToolTip/InfoToolTip';
 import { auth } from '../../utils/Auth';
-import RequireAuth from '../../utils/RequireAuth';
+import ProtectedRoute from '../../utils/ProtectedRoute';
 import { moviesApi } from '../../utils/MoviesApi';
 import { mainApi } from '../../utils/MainApi';
+import { getTime, filterMovies } from '../../utils/index';
 
 function App() {
+  const windowSize = useWindowSize();
+  const [beatFilmsMovies, setBeatFilmsMovies] = useState(null);
+  const [beatFilmsSearchQuery, setBeatFilmsSearchQuery] = useState(
+    localStorage.getItem('beatFilmsSearchQuery') ?? ''
+  );
+  const [beatFilmsIsShort, setBeatFilmsIsShort] = useState(
+    JSON.parse(localStorage.getItem('beatFilmsIsShort')) ?? false
+  );
+  const [beatFilmsInputValue, setBeatFilmsInputValue] = useState(
+    localStorage.getItem('beatFilmsSearchQuery') ?? ''
+  );
+
+  const [savedMovies, setSavedMovies] = useState(null);
+  const [savedMoviesSearchQuery, setSavedMoviesSearchQuery] = useState('');
+  const [savedMoviesIsShort, setSavedMoviesIsShort] = useState(false);
+  const [savedMoviesInputValue, setSavedMoviesInutValue] = useState('');
+  const [isLoadingBeatFilms, setIsLoadingBeatFilms] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const [searchError, setSearchError] = useState('');
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
@@ -28,6 +47,101 @@ function App() {
     image: '',
     caption: '',
   });
+
+  // Запрос всех фильмов из сервера BeatFilms
+  useEffect(() => {
+    if (
+      !beatFilmsMovies &&
+      beatFilmsSearchQuery.length > 0
+    ) {
+      if ('beatFilmsMovies' in localStorage) {
+        setBeatFilmsMovies(JSON.parse(localStorage.getItem('beatFilmsMovies')));
+        setBeatFilmsSearchQuery(localStorage.getItem('beatFilmsSearchQuery'));
+        setBeatFilmsIsShort(
+          JSON.parse(localStorage.getItem('beatFilmsIsShort'))
+        );
+      } else {
+        setIsLoadingBeatFilms(true);
+        moviesApi
+          .getMovies()
+          .then((movies) => {
+            setBeatFilmsMovies(movies);
+            localStorage.setItem('beatFilmsMovies', JSON.stringify(movies));
+          })
+          .catch((err) => setSearchError(err))
+          .finally(() => setIsLoadingBeatFilms(false));
+      }
+    }
+  }, [beatFilmsMovies, beatFilmsSearchQuery, beatFilmsIsShort]);
+
+  // Запись данных запроса и чекбокса в localStorage
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem('beatFilmsSearchQuery', beatFilmsSearchQuery);
+      localStorage.setItem(
+        'beatFilmsIsShort',
+        JSON.stringify(beatFilmsIsShort)
+      );
+    }
+  }, [isLoggedIn, beatFilmsSearchQuery, beatFilmsIsShort]);
+
+  // Обработчик клика добавления в избранное
+  const handleAddToFavoritesClick = (movie) => {
+    const isMovieSaved = savedMovies.some((item) => item.movieId === movie.id);
+    if (!isMovieSaved) {
+      mainApi
+        .saveMovie({
+          movieId: movie.id,
+          nameRU: movie.nameRU,
+          image: moviesApi._baseUrl + movie.image.url,
+          trailerLink: movie.trailerLink,
+          duration: movie.duration,
+          country: movie.country,
+          director: movie.director,
+          year: movie.year,
+          description: movie.description,
+          thumbnail: moviesApi._baseUrl + movie.image.formats.thumbnail.url,
+          owner: movie.owner,
+          nameEN: movie.nameEN,
+        })
+        .then((savedMovie) => setSavedMovies([savedMovie, ...savedMovies]))
+        .catch((err) => console.log(err, err.status, err.message));
+    } else {
+      const savedMovieId = savedMovies.find(
+        (item) => item.movieId === movie.id
+      )._id;
+      mainApi
+        .deleteMovie(savedMovieId)
+        .then(() => {
+          setSavedMovies((state) =>
+            state.filter((item) => item.movieId !== movie.id)
+          );
+        })
+        .catch((err) => console.log(err, err.status, err.message));
+    }
+  };
+
+  // Обработчик клика удаления из избранного
+  const handleRemoveFromFavoritesClick = (movie) => {
+    mainApi
+      .deleteMovie(movie._id)
+      .then(() => {
+        setSavedMovies((state) =>
+          state.filter((item) => item.movieId !== movie.movieId)
+        );
+      })
+      .catch((err) => console.log(err, err.status, err.message));
+  };
+
+  // Запрос фильмов добавленых в избранное
+  useEffect(() => {
+    if (isLoggedIn) {
+      mainApi
+        .getSavedMovies()
+        .then((movies) => setSavedMovies(movies.reverse()))
+        .catch((err) => setSearchError(err));
+    }
+  }, [isLoggedIn]);
 
   // Проверка токена
   const handleCheckToken = useCallback(() => {
@@ -166,12 +280,20 @@ function App() {
       .finally(() => setIsFetching(false));
   };
 
-  // Функция выхода пользователя
+  // Выход пользователя и отчистка данных из localStorage
   const handleLogOut = () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('beatFilmsMovies');
     localStorage.removeItem('beatFilmsSearchQuery');
     localStorage.removeItem('beatFilmsIsShort');
+    setBeatFilmsMovies(null);
+    setBeatFilmsSearchQuery('');
+    setBeatFilmsIsShort(false);
+    setBeatFilmsInputValue('');
+    setSavedMovies(null);
+    setSavedMoviesSearchQuery('');
+    setSavedMoviesIsShort(false);
+    setSavedMoviesInutValue('');
     setIsLoggedIn(false);
     setCurrentUser({
       _id: '',
@@ -180,18 +302,18 @@ function App() {
     });
   };
 
-  // Открытие меню в хедере
+  // Управление состоянием навигационного меню в мобильных разрешениях
   const handleOpenMenu = () => {
     setIsMobileMenuActive(!isMobileMenuActive);
   };
 
-  // Закрытие модальных окон
+  // Закрытие всех модальных окон
   const closeModal = () => {
     setIsMobileMenuActive(false);
     setIsInfoToolTipActive(false);
   };
 
-  // Функция закрытия окон по esc
+  // Закрытия окон с помощью esc
   useEffect(() => {
     const closeByEsc = (evt) => {
       if (evt.key === 'Escape') {
@@ -214,50 +336,82 @@ function App() {
               isMobileMenuActive={isMobileMenuActive}
               onOpenMenu={handleOpenMenu}
               onClose={closeModal}
+              windowSize={windowSize}
             />
           }
         />
         <Route
           path = '/movies'
           element = {
-            <RequireAuth isLoggedIn={isLoggedIn}>
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Movies
                 isLoggedIn={isLoggedIn}
                 isMobileMenuActive={isMobileMenuActive}
                 onOpenMenu={handleOpenMenu}
                 onClose={closeModal}
+                windowSize={windowSize}
+                movies={filterMovies(
+                  beatFilmsMovies,
+                  beatFilmsSearchQuery,
+                  beatFilmsIsShort
+                )}
+                getTime={getTime}
+                isLoading={isLoadingBeatFilms}
+                searchQuery={beatFilmsSearchQuery}
+                setSearchQuery={setBeatFilmsSearchQuery}
+                isShort={beatFilmsIsShort}
+                setIsShort={setBeatFilmsIsShort}
+                searchError={searchError}
+                inputValue={beatFilmsInputValue}
+                setInputValue={setBeatFilmsInputValue}
+                savedMovies={savedMovies}
+                onCardSave={handleAddToFavoritesClick}
               />
-            </RequireAuth>
+            </ProtectedRoute>
           }
         />
         <Route
           path = '/saved-movies'
           element = {
-            <RequireAuth isLoggedIn={isLoggedIn}>
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
               <SavedMovies
                 isLoggedIn={isLoggedIn}
                 isMobileMenuActive={isMobileMenuActive}
                 onOpenMenu={handleOpenMenu}
                 onClose={closeModal}
+                windowSize={windowSize}
+                movies={filterMovies(
+                  savedMovies,
+                  savedMoviesSearchQuery,
+                  savedMoviesIsShort
+                )}
+                getTime={getTime}
+                setSearchQuery={setSavedMoviesSearchQuery}
+                isShort={savedMoviesIsShort}
+                setIsShort={setSavedMoviesIsShort}
+                inputValue={savedMoviesInputValue}
+                setInputValue={setSavedMoviesInutValue}
+                onCardDelete={handleRemoveFromFavoritesClick}
               />
-            </RequireAuth>
+            </ProtectedRoute>
           }
         />
         <Route
           path = '/profile'
           element = {
-            <RequireAuth isLoggedIn={isLoggedIn}>
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Profile
                 isLoggedIn={isLoggedIn}
                 isMobileMenuActive={isMobileMenuActive}
                 onOpenMenu={handleOpenMenu}
                 onClose={closeModal}
+                windowSize={windowSize}
                 handleLogOut={handleLogOut}
                 handleEditProfile={handleEditProfile}
                 isFetching={isFetching}
                 setIsFetching={setIsFetching}
               />
-            </RequireAuth>
+            </ProtectedRoute>
           }
         />
         <Route

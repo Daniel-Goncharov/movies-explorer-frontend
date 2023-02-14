@@ -34,10 +34,6 @@
   line-height: 16px;
 }
 
-.copyright::after {
-  content: " 2020";
-}
-
 .footer__links {
   display: flex;
   width: 182px;
@@ -82,10 +78,6 @@
     font-size: 12px;
     line-height: 15px;
     color: #8B8B8B;
-  }
-
-  .copyright::after {
-    content: "2020";
   }
 
   .footer__link {

@@ -1,24 +1,16 @@
 import './FilterCheckbox.css';
-import { useState } from 'react';
 
-export default function FilterCheckbox({ handler, name, checked, label }) {
-  const [isChecked, setIsChecked] = useState(checked);
-
-  function handleChange(evt) {
-    setIsChecked(!isChecked);
-    handler(evt);
-  }
-
+export default function FilterCheckbox({ name, type, checked, onChange, label }) {
   return (
     <label className="filter-checkbox">
       <input
-        type="checkbox"
         name={name}
-        checked={isChecked}
-        onChange={handleChange}
+        type={type}
+        checked={checked}
+        onChange={onChange}
         className="filter-checkbox__source"
       />
-      <span className={`filter-checkbox__custom ${isChecked && 'filter-checkbox__custom_active'}`}/>
+      <span className={`filter-checkbox__custom ${checked && 'filter-checkbox__custom_active'}`}/>
       <span className="filter-checkbox__label">{label}</span>
     </label>
   );

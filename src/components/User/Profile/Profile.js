@@ -9,6 +9,7 @@ export default function ProfilePage({
   isMobileMenuActive,
   onOpenMenu,
   onClose,
+  windowSize,
   handleLogOut,
   handleEditProfile,
   isFetching,
@@ -45,7 +46,7 @@ export default function ProfilePage({
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} isMobileMenuActive={isMobileMenuActive} onOpenMenu={onOpenMenu} onClose={onClose}/>
+      <Header isLoggedIn={isLoggedIn} isMobileMenuActive={isMobileMenuActive} onOpenMenu={onOpenMenu} onClose={onClose} windowSize={windowSize}/>
       <main className='profile'>
       <div className='profile__container'>
         <h2 className='profile__title'>Привет, {currentUser.name}!</h2>
