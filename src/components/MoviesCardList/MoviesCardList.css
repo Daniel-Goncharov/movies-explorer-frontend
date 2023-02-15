@@ -36,5 +36,6 @@
     padding-top: 50px;
     grid-template-columns: repeat(auto-fit, 300px);
     gap: 16px;
+    justify-content: center;
   }
 }
