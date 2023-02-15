@@ -1,5 +1,5 @@
-import './Movies.css'
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import './Movies.css';
 import {
   HIGH_RES,
   LOW_RES,
@@ -127,7 +127,7 @@ function Movies({
       </main>
       <Footer/>
     </>
-  )
-}
+  );
+};
 
 export default React.memo(Movies);

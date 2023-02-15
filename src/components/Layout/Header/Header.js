@@ -1,5 +1,5 @@
-import './Header.css';
 import { Link } from 'react-router-dom';
+import './Header.css';
 import Navigation from '../../Navigation/Navigation';
 import Logo from '../../Logo/Logo';
 
@@ -13,5 +13,5 @@ export default function Header({ isLoggedIn, isMobileMenuActive, onOpenMenu, onC
         <Navigation isLoggedIn={isLoggedIn} isMobileMenuActive={isMobileMenuActive} onOpenMenu={onOpenMenu} onClose={onClose} windowSize={windowSize}/>
       </div>
     </header>
-  )
-}
+  );
+};

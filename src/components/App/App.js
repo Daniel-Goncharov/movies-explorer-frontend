@@ -1,10 +1,15 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import fetchIsFail from '../../images/Badrequest.svg';
 import fetchIsOk from '../../images/Goodrequest.svg';
-import React, { useEffect, useState, useCallback } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import useWindowSize from '../../vendor/hooks/useWindowSize';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import ProtectedRoute from '../../utils/ProtectedRoute';
+import { moviesApi } from '../../utils/MoviesApi';
+import { mainApi } from '../../utils/MainApi';
+import { getTime, filterMovies } from '../../utils/index';
+import { auth } from '../../utils/Auth';
 import Profile from '../User/Profile/Profile';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
@@ -13,13 +18,8 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../User/Register/Register';
 import Login from '../User/Login/Login';
 import InfoToolTip from '../InfoToolTip/InfoToolTip';
-import { auth } from '../../utils/Auth';
-import ProtectedRoute from '../../utils/ProtectedRoute';
-import { moviesApi } from '../../utils/MoviesApi';
-import { mainApi } from '../../utils/MainApi';
-import { getTime, filterMovies } from '../../utils/index';
 
-function App() {
+export default function App() {
   const windowSize = useWindowSize();
   const [beatFilmsMovies, setBeatFilmsMovies] = useState(null);
   const [beatFilmsSearchQuery, setBeatFilmsSearchQuery] = useState(
@@ -329,7 +329,7 @@ function App() {
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <Routes>
         <Route
-          path = '/'
+          path = "/"
           element = {
             <Main
               isLoggedIn={isLoggedIn}
@@ -341,7 +341,7 @@ function App() {
           }
         />
         <Route
-          path = '/movies'
+          path = "/movies"
           element = {
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Movies
@@ -371,7 +371,7 @@ function App() {
           }
         />
         <Route
-          path = '/saved-movies'
+          path = "/saved-movies"
           element = {
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <SavedMovies
@@ -397,7 +397,7 @@ function App() {
           }
         />
         <Route
-          path = '/profile'
+          path = "/profile"
           element = {
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Profile
@@ -415,7 +415,7 @@ function App() {
           }
         />
         <Route
-          path = '/signin'
+          path = "/signin"
           element = {
             <Login
               handleLogin={handleLogin}
@@ -425,7 +425,7 @@ function App() {
           }
         />
         <Route
-          path = '/signup'
+          path = "/signup"
           element = {
             <Register
               handleRegister={handleRegister}
@@ -435,7 +435,7 @@ function App() {
           }
         />
         <Route
-          path = '*'
+          path = "*"
           element = {
             <NotFound/>
           }
@@ -450,6 +450,4 @@ function App() {
         />
     </CurrentUserContext.Provider>
   );
-}
-
-export default App;
+};

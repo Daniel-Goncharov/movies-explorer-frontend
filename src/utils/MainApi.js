@@ -2,13 +2,13 @@ function checkResponse(res) {
   return res.ok
     ? res.json()
     : Promise.reject(res.status);
-}
+};
 
 class MainApi {
   constructor({ baseUrl, headers }) {
     this._headers = headers;
     this._baseUrl = baseUrl;
-  }
+  };
 
   editProfile(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -22,7 +22,7 @@ class MainApi {
         email,
       }),
     }).then(checkResponse);
-  }
+  };
 
   getSavedMovies() {
     return fetch(`${this._baseUrl}/movies`, {
@@ -31,7 +31,7 @@ class MainApi {
         'Content-Type': 'application/json',
       },
     }).then(checkResponse);
-  }
+  };
 
   saveMovie(movie) {
     return fetch(`${this._baseUrl}/movies`, {
@@ -42,7 +42,7 @@ class MainApi {
       },
       body: JSON.stringify(movie),
     }).then(checkResponse);
-  }
+  };
 
   deleteMovie(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
@@ -52,8 +52,8 @@ class MainApi {
         'Content-Type': 'application/json',
       },
     }).then(checkResponse);
-  }
-}
+  };
+};
 
 export const mainApi = new MainApi({
   baseUrl: 'https://api.goncharov.nomoredomainsclub.ru',

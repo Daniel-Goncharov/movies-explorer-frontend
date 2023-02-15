@@ -1,5 +1,5 @@
-import './SearchForm.css';
 import React, { useState } from 'react';
+import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Button from '../Button/Button';
 
@@ -12,17 +12,17 @@ function SearchForm({
 }) {
   const [emptyInputError, setEmptyInputError] = useState(false);
 
-  // Двустороннее связывание инпута
+  // Двустороннее связывает импут
   const handleSearchInput = (evt) => {
     setInputValue(evt.target.value);
   };
 
-  // Переключение чекбокса
+  // Переключает чекбокс
   const handleCheckbox = () => {
     setIsShort(!isShort);
   };
 
-  // Обработка клика по кнопке поиска
+  // Обрабатывает нажатие по кнопке поиска
   const handleSearch = (evt) => {
     evt.preventDefault();
     if (!inputValue) {
@@ -41,8 +41,8 @@ function SearchForm({
           <input
             type="text"
             name="query"
-            placeholder={emptyInputError ? 'Нужно ввести ключевое слово' : 'Фильм'}
-            className={`search-form__input ${emptyInputError && 'search-form__input-error'}`}
+            placeholder={emptyInputError ? "Нужно ввести ключевое слово" : "Фильм"}
+            className={`search-form__input ${emptyInputError && "search-form__input-error"}`}
             required
             onChange={handleSearchInput}
             value={inputValue}
@@ -56,7 +56,7 @@ function SearchForm({
         </div>
         <FilterCheckbox
           name="short"
-          type='checkbox'
+          type="checkbox"
           checked={isShort}
           onChange={handleCheckbox}
           label="Короткометражки"

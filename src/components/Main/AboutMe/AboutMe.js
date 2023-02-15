@@ -1,5 +1,5 @@
-import './AboutMe.css';
 import { Link } from 'react-router-dom';
+import './AboutMe.css';
 import myPhoto from '../../../images/my_photo.jpg';
 import Portfolio from '../Portfolio/Portfolio';
 
@@ -24,5 +24,5 @@ export default function AboutMe() {
       </div>
       <Portfolio/>
     </section>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import './MoviesCard.css';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Button from '../Button/Button';
+import './MoviesCard.css';
 import { moviesApi } from '../../utils/MoviesApi';
+import Button from '../Button/Button';
 
 function MoviesCard({
   movie,
@@ -32,15 +32,15 @@ function MoviesCard({
           <h2 className="movies-card__title">{ movie.nameRU }</h2>
           <p className="movies-card__duration">{getTime(movie.duration)}</p>
         </div>
-        {pathname === '/saved-movies' ? (
+        {pathname === "/saved-movies" ? (
           <Button
-            type='button'
+            type="button"
             className="movies-card__icon movies-card__icon-delete"
             onClick={handleDeleteClick}
           />
         ) : (
           <Button
-            type='button'
+            type="button"
             className={
               isFavorite
                 ? "movies-card__icon movies-card__icon-favorite movies-card__icon-favorite_active"

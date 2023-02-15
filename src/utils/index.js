@@ -1,4 +1,4 @@
-import { MAX_SHORT_MOVIE_DURATION } from '../constants/index'
+import { MAX_SHORT_MOVIE_DURATION } from '../constants/index';
 
 // Изменяет формат длинны фильма
 export function getTime(minutes) {

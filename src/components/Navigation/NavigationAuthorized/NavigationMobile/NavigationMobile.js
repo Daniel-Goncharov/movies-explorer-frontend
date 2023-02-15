@@ -1,5 +1,5 @@
-import './NavigationMobile.css';
 import { NavLink } from 'react-router-dom';
+import './NavigationMobile.css';
 import Hamburger from '../../../Hamburger/Hamburger';
 import Button from '../../../Button/Button';
 
@@ -7,8 +7,8 @@ export default function NavigationMobile({ isMobileMenuActive, onOpenMenu, onClo
   return (
     <>
       <Hamburger onClick={onOpenMenu} isMobileMenuActive={isMobileMenuActive}/>
-      <div onClick={onClose} className={`cover ${isMobileMenuActive ? 'cover_active' : ''}`}/>
-      <div onClick={(evt) => evt.stopPropagation()} className={`navigation__container-mobile ${isMobileMenuActive ? 'navigation__container-mobile_open' : 'navigation__container-mobile_closed'}`}>
+      <div onClick={onClose} className={`cover ${isMobileMenuActive ? "cover_active" : ""}`}/>
+      <div onClick={(evt) => evt.stopPropagation()} className={`navigation__container-mobile ${isMobileMenuActive ? "navigation__container-mobile_open" : "navigation__container-mobile_closed"}`}>
         <nav className="navigation navigation__type_authorized-mobile">
           <ul className="navigation__link-list_type_authorized-mobile">
             <li>
@@ -56,5 +56,5 @@ export default function NavigationMobile({ isMobileMenuActive, onOpenMenu, onClo
         </nav>
       </div>
     </>
-  )
-}
+  );
+};

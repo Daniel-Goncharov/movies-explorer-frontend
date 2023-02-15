@@ -1,8 +1,8 @@
-import './Register.css';
 import { Link, Navigate, useLocation } from 'react-router-dom';
+import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
+import './Register.css';
 import CustomInput from '../../CustomInput/CustomInput';
 import Logo from '../../Logo/Logo';
-import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
 import Button from '../../Button/Button';
 
 
@@ -14,10 +14,10 @@ function handleSubmit(evt) {
   evt.preventDefault();
   const { name, email, password } = values;
   handleRegister({ name, email, password });
-}
+};
 
 if (isLoggedIn) {
-  return <Navigate to='/movies' state={{ from: location }} replace />;
+  return <Navigate to="/movies" state={{ from: location }} replace />;
 }
 
   return (
@@ -30,26 +30,26 @@ if (isLoggedIn) {
         <CustomInput
           name="name"
           placeholder="Имя"
-          type='text'
+          type="text"
           readOnly={isFetching && true}
           handler={handleChange}
           min="2"
           max="30"
-          pattern='^(?!\s)[A-Za-zА-Яа-я\-\s]+$'
+          pattern="^(?!\s)[A-Za-zА-Яа-я\-\s]+$"
           errorText={errors.name}
-          value={values.name ? values.name : ''}
+          value={values.name ? values.name : ""}
         />
         <CustomInput
           name="email"
           placeholder="E-mail"
-          type='email'
+          type="email"
           readOnly={isFetching && true}
           handler={handleChange}
           min="2"
           max="30"
-          pattern='^.+@.+\..+$'
+          pattern="^.+@.+\..+$"
           errorText={errors.email}
-          value={values.email ? values.email : ''}
+          value={values.email ? values.email : ""}
         />
         <CustomInput
           name="password"
@@ -59,7 +59,7 @@ if (isLoggedIn) {
           handler={handleChange}
           min="6"
           errorText={errors.password}
-          value={values.password ? values.password : ''}
+          value={values.password ? values.password : ""}
         />
         <Button
           disabled={!isValid || isFetching ? true : false}
@@ -70,12 +70,18 @@ if (isLoggedIn) {
           }
           type="submit"
         >
-          {isFetching ? 'Загрузка...' : 'Зарегистрироваться'}
+          {isFetching ? "Загрузка..." : "Зарегистрироваться"}
         </Button>
         <div className="form__footer">
-        Уже зарегистрированы? <Link to={'/signin'} className="form__link">Войти</Link>
+          Уже зарегистрированы?
+          <Link
+            to={"/signin"}
+            className="form__link"
+          >
+            Войти
+          </Link>
         </div>
       </form>
     </section>
-  )
-}
+  );
+};

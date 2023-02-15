@@ -1,9 +1,9 @@
-import './Login.css';
-import CustomInput from '../../CustomInput/CustomInput';
-import Logo from '../../Logo/Logo';
-import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
-import Button from '../../Button/Button';
 import { Link, Navigate, useLocation } from 'react-router-dom';
+import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
+import './Login.css';
+import Logo from '../../Logo/Logo';
+import CustomInput from '../../CustomInput/CustomInput';
+import Button from '../../Button/Button';
 
 
 export default function Login({ handleLogin, isLoggedIn, isFetching }) {
@@ -14,11 +14,11 @@ export default function Login({ handleLogin, isLoggedIn, isFetching }) {
     evt.preventDefault();
     const { email, password } = values;
     handleLogin({ email, password });
-  }
+  };
 
   if (isLoggedIn) {
-    return <Navigate to='/movies' state={{ from: location }} replace />;
-  }
+    return <Navigate to="/movies" state={{ from: location }} replace />;
+  };
 
   return (
     <section className="login">
@@ -34,16 +34,16 @@ export default function Login({ handleLogin, isLoggedIn, isFetching }) {
           handler={handleChange}
           min="2"
           max="30"
-          pattern='^.+@.+\..+$'
+          pattern="^.+@.+\..+$"
           errorText={errors.email}
-          value={values.email ? values.email : ''}
+          value={values.email ? values.email : ""}
         />
         <CustomInput
           type="password"
           name="password"
           placeholder="Пароль"
           readOnly={isFetching && true}
-          value={values.password ? values.password : ''}
+          value={values.password ? values.password : ""}
           handler={handleChange}
           min="6"
           errorText={errors.password}
@@ -57,12 +57,18 @@ export default function Login({ handleLogin, isLoggedIn, isFetching }) {
           }
           type="submit"
         >
-          {isFetching ? 'Загрузка...' : 'Войти'}
+          {isFetching ? "Загрузка..." : "Войти"}
         </Button>
         <div className="form__footer">
-          Ещё не зарегистрированы? <Link to={'/signup'} className="form__link">Регистрация</Link>
+          Ещё не зарегистрированы?
+          <Link
+            to={"/signup"}
+            className="form__link"
+          >
+            Регистрация
+          </Link>
         </div>
       </form>
     </section>
-  )
-}
+  );
+};

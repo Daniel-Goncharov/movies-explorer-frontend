@@ -1,5 +1,5 @@
-import './SavedMovies.css';
 import { useCallback } from 'react';
+import './SavedMovies.css';
 import Footer from '../Layout/Footer/Footer';
 import Header from '../Layout/Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -56,5 +56,5 @@ export default function SavedMovies({
       </main>
       <Footer/>
     </>
-  )
-}
+  );
+};

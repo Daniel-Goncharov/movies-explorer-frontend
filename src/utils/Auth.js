@@ -2,13 +2,13 @@ function checkResponse(res) {
   return res.ok
     ? res.json()
     : Promise.reject(res.status);
-}
+};
 
 class Auth {
   constructor({ baseUrl, headers }) {
     this._headers = headers;
     this._baseUrl = baseUrl;
-  }
+  };
 
   // Регистрация пользователя
   register(name, email, password) {
@@ -20,7 +20,7 @@ class Auth {
       },
       body: JSON.stringify({ name, email, password }),
     }).then(checkResponse);
-  }
+  };
 
   // Авторизация пользователя
   authorize(email, password) {
@@ -32,7 +32,7 @@ class Auth {
       },
       body: JSON.stringify({ email, password }),
     }).then(checkResponse);
-  }
+  };
 
   // Получение информации о текущем пользователе
   getCurrentUser(token) {
@@ -43,8 +43,8 @@ class Auth {
         Authorization: `Bearer ${token}`,
       },
     }).then(checkResponse);
-  }
-}
+  };
+};
 
 export const auth = new Auth({
   baseUrl: 'https://api.goncharov.nomoredomainsclub.ru',

@@ -2,7 +2,6 @@ import NavigationAuthorized from './NavigationAuthorized/NavigationAuthorized';
 import NavigationUnauthorized from './NavigationUnauthorized/NavigationUnauthorized';
 
 export default function Navigation({ isLoggedIn, isMobileMenuActive, onOpenMenu, onClose, windowSize }) {
-
   return (
     <>
     {
@@ -11,5 +10,5 @@ export default function Navigation({ isLoggedIn, isMobileMenuActive, onOpenMenu,
       <NavigationUnauthorized/>
     }
     </>
-  )
-}
+  );
+};

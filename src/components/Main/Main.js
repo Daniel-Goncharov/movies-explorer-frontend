@@ -25,5 +25,5 @@ export default function Main({ isLoggedIn, isMobileMenuActive, onOpenMenu, onClo
       </main>
       <Footer/>
     </>
-  )
-}
+  );
+};

@@ -15,5 +15,5 @@ export default function NavTab() {
       </li>
     </ul>
   </nav>
-  )
-}
+  );
+};

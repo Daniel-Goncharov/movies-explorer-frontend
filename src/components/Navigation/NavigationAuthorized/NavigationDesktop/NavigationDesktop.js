@@ -1,5 +1,5 @@
-import './NavigationDesktop.css';
 import { NavLink } from "react-router-dom";
+import './NavigationDesktop.css';
 import Button from '../../../Button/Button';
 
 export default function NavigationDesktop() {
@@ -35,5 +35,5 @@ export default function NavigationDesktop() {
         </Button>
       </NavLink>
     </nav>
-  )
-}
+  );
+};
