@@ -1,58 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import Button from '../Button/Button';
 
-function SearchForm({
-  isShort,
-  setIsShort,
-  onSearch,
-  inputValue,
-  setInputValue
-}) {
+function SearchForm({ isShort, setIsShort, onSearch, inputValue, setInputValue }) {
   const [emptyInputError, setEmptyInputError] = useState(false);
 
-  // Двустороннее связывает импут
-  const handleSearchInput = (evt) => {
+  const handleSearchInput = useCallback((evt) => {
     setInputValue(evt.target.value);
-  };
+  }, [setInputValue]);
 
-  // Переключает чекбокс
-  const handleCheckbox = () => {
-    setIsShort(!isShort);
-  };
+  const handleCheckbox = useCallback(() => {
+    setIsShort((prevState) => !prevState);
+  }, [setIsShort]);
 
-  // Обрабатывает нажатие по кнопке поиска
-  const handleSearch = (evt) => {
+  const handleSearch = useCallback((evt) => {
     evt.preventDefault();
-    if (!inputValue) {
+    if (!inputValue.trim()) {
       setEmptyInputError(true);
     } else {
       setEmptyInputError(false);
-      onSearch(inputValue);
+      onSearch(inputValue.trim());
     }
-  };
+  }, [inputValue, onSearch]);
 
   return (
     <div className="search-form-wrap">
       <form name="search" method="get" className="search-form">
         <div className="search-form__input-wrap">
-          <div className="search-form__icon"/>
+          <div className="search-form__icon" />
           <input
             type="text"
             name="query"
             placeholder={emptyInputError ? "Нужно ввести ключевое слово" : "Фильм"}
-            className={`search-form__input ${emptyInputError && "search-form__input-error"}`}
+            className={`search-form__input ${emptyInputError ? "search-form__input-error" : ""}`}
             required
             onChange={handleSearchInput}
             value={inputValue}
           />
-          <Button
-              type="submit"
-              className="search-form__button"
-              onClick={handleSearch}
-            />
-          <div className="vertical-decoration-line"/>
+          <Button type="submit" className="search-form__button" onClick={handleSearch} />
+          <div className="vertical-decoration-line" />
         </div>
         <FilterCheckbox
           name="short"
@@ -64,6 +51,7 @@ function SearchForm({
       </form>
     </div>
   );
-};
+}
 
 export default React.memo(SearchForm);
+

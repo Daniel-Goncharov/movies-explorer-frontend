@@ -10,7 +10,6 @@ export default function SavedMovies({
   isMobileMenuActive,
   onOpenMenu,
   onClose,
-  windowSize,
   movies,
   getTime,
   setSearchQuery,
@@ -18,10 +17,8 @@ export default function SavedMovies({
   setIsShort,
   inputValue,
   setInputValue,
-  onCardDelete
+  onCardDelete,
 }) {
-
-  // Отправка поискового запроса
   const handleSearchButtonClick = useCallback(
     (input) => {
       setSearchQuery(input);
@@ -36,7 +33,6 @@ export default function SavedMovies({
         isMobileMenuActive={isMobileMenuActive}
         onOpenMenu={onOpenMenu}
         onClose={onClose}
-        windowSize={windowSize}
       />
       <main className="saved-movies">
         <SearchForm
@@ -46,13 +42,11 @@ export default function SavedMovies({
           setIsShort={setIsShort}
           onSearch={handleSearchButtonClick}
         />
-        {!movies ? null : (
         <MoviesCardList
           movies={movies}
           getTime={getTime}
           onCardDelete={onCardDelete}
         />
-      )}
       </main>
       <Footer/>
     </>

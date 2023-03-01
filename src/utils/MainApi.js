@@ -25,9 +25,13 @@ class MainApi {
   };
 
   getSavedMovies() {
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) {
+      return Promise.resolve([]);
+    }
     return fetch(`${this._baseUrl}/movies`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        Authorization: `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
     }).then(checkResponse);

@@ -1,14 +1,5 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import './Movies.css';
-import {
-  HIGH_RES,
-  LOW_RES,
-  DESKTOP_NUM_OF_MOVIES,
-  TABLET_NUM_OF_MOVIES,
-  MOBILE_NUM_OF_MOVIES,
-  DESKTOP_NUM_OF_MORE_MOVIES,
-  TABLET_NUM_OF_MORE_MOVIES,
-} from '../../constants/index';
 import Button from '../Button/Button';
 import Footer from '../Layout/Footer/Footer';
 import Header from '../Layout/Header/Header';
@@ -16,18 +7,17 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader'
 import Error from '../Error/Error';
+import useAmountMoviesCards from '../../utils/hooks/useAmountMoviesCards';
 
 function Movies({
   isLoggedIn,
   isMobileMenuActive,
   onOpenMenu,
   onClose,
-  windowSize,
   movies,
-  getTime,
   searchQuery,
-  setSearchQuery,
   isShort,
+  setSearchQuery,
   setIsShort,
   isLoading,
   searchError,
@@ -36,58 +26,18 @@ function Movies({
   onCardSave,
   savedMovies,
 }) {
-  const [defaultMoviesCards, setDefaultMoviesCards] = useState(0);
+  const { amountMoviesCards, hideButtonMore, showMoreMoviesCards } = useAmountMoviesCards(movies, searchQuery, isShort);
 
-  // Определяет каличество карточек для показа
-  const moviesCards = useCallback(() => {
-    if (windowSize.width > HIGH_RES) {
-      setDefaultMoviesCards(DESKTOP_NUM_OF_MOVIES);
-    } else if (windowSize.width < LOW_RES) {
-      setDefaultMoviesCards(MOBILE_NUM_OF_MOVIES);
-    } else {
-      setDefaultMoviesCards(TABLET_NUM_OF_MOVIES);
-    }
-  }, [windowSize.width]);
-
-  // Определяет количество карточек по нажатию на кнопку Ещё
-  const showMoreMovies = () => {
-    if (windowSize.width > HIGH_RES) {
-      setDefaultMoviesCards(defaultMoviesCards + DESKTOP_NUM_OF_MORE_MOVIES);
-    } else {
-      setDefaultMoviesCards(defaultMoviesCards + TABLET_NUM_OF_MORE_MOVIES);
-    }
-  };
-
-  // Изменяет выдачу карточек после каждого поискового запроса
-  useEffect(() => {
-    if (searchQuery.length || isShort) {
-      moviesCards();
-    }
-  }, [searchQuery, isShort, moviesCards]);
-
-  // Логика скрытия кнопки Ещё
-  const isButtonMoreHidden = useMemo(() => {
-    if (movies === null) {
-      return false;
-    }
-    if (defaultMoviesCards >= movies.length) {
-      return false;
-    } else {
-      return true;
-    }
-  }, [movies, defaultMoviesCards]);
-
-  // Отправка поискового запроса
   const handleSearchButtonClick = useCallback(
     (input) => {
       setSearchQuery(input);
     },
     [setSearchQuery]
-  );
+    );
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} isMobileMenuActive={isMobileMenuActive} onOpenMenu={onOpenMenu} onClose={onClose} windowSize={windowSize}/>
+      <Header isLoggedIn={isLoggedIn} isMobileMenuActive={isMobileMenuActive} onOpenMenu={onOpenMenu} onClose={onClose}/>
       <main className="movies">
         <SearchForm
           isShort={isShort}
@@ -107,14 +57,13 @@ function Movies({
             {!movies ? null : (
               <>
                 <MoviesCardList
-                  movies={movies.slice(0, defaultMoviesCards)}
-                  getTime={getTime}
+                  movies={movies.slice(0, amountMoviesCards)}
                   onCardSave={onCardSave}
                   savedMovies={savedMovies}
                 />
-                {isButtonMoreHidden && (
+                {hideButtonMore && (
                   <Button
-                    onClick={showMoreMovies}
+                    onClick={showMoreMoviesCards}
                     className="movies__button"
                   >
                     Ещё
