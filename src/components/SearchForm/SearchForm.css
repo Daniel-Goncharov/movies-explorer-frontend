@@ -27,6 +27,7 @@
   grid-template-columns: 22px 1fr 34px 15px;
   column-gap: 15px;
   align-items: center;
+  position: relative;
 }
 
 .search-form__icon {
@@ -55,11 +56,19 @@
   border-bottom: 1px solid #4285F4;
 }
 
+.search-form__input-error {
+  border-bottom: 1px solid #ee3465;
+}
+
 .search-form__input::placeholder {
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
   color: #8B8B8B;
+}
+
+.search-form__input-error::placeholder {
+  color: #ee3465;
 }
 
 .search-form__button {
@@ -83,13 +92,6 @@
   height: 40px;
   background-color: #424242;
   justify-self: end;
-}
-
-.search-form__resalt-null {
-  display: none;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
 }
 
 .search-form__resalt-null_active {

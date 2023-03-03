@@ -1,5 +1,5 @@
+import { NavLink } from "react-router-dom";
 import './NavigationDesktop.css';
-import { Link } from "react-router-dom";
 import Button from '../../../Button/Button';
 
 export default function NavigationDesktop() {
@@ -7,17 +7,33 @@ export default function NavigationDesktop() {
     <nav className="navigation navigation__type_authorized-desktop">
       <ul className="navigation__link-list">
         <li>
-          <Link to="/movies" className="navigation__link-authorized navigation__link-authorized_active">Фильмы</Link>
+          <NavLink to="/movies"
+            className={({ isActive }) =>
+              isActive
+                ? "navigation__link-authorized navigation__link-authorized_active"
+                : "navigation__link-authorized"
+            }
+          >
+            Фильмы
+          </NavLink>
           </li>
         <li>
-          <Link to="/saved-movies" className="navigation__link-authorized">Сохранённые фильмы</Link>
+          <NavLink to="/saved-movies"
+            className={({ isActive }) =>
+              isActive
+                ? "navigation__link-authorized navigation__link-authorized_active"
+                : "navigation__link-authorized"
+            }
+          >
+            Сохранённые фильмы
+          </NavLink>
         </li>
       </ul>
-      <Link to="/profile">
+      <NavLink to="/profile">
         <Button className="navigation__button-account">
           <span>Аккаунт</span>
         </Button>
-      </Link>
+      </NavLink>
     </nav>
-  )
-}
+  );
+};

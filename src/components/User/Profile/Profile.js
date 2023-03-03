@@ -1,94 +1,116 @@
-import './Profile.css';
-import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import Header from '../../Layout/Header/Header';
-import CustomInput from '../../CustomInput/CustomInput';
-import Button from '../../Button/Button';
+import { useContext, useEffect } from 'react';
 import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
+import './Profile.css';
+import { CurrentUserContext } from '../../../context/CurrentUserContext';
+import Header from '../../Layout/Header/Header';
 
-export default function ProfilePage() {
-  const user = {
-    name: 'Виталий',
-    email: 'pochta@yandex.ru',
-  }
-
-  const history = useNavigate();
+export default function ProfilePage({
+  isLoggedIn,
+  isMobileMenuActive,
+  onOpenMenu,
+  onClose,
+  windowSize,
+  handleLogOut,
+  handleEditProfile,
+  isFetching,
+  setIsFetching
+}) {
   const {values, handleChange, errors, isValid, setValues } = useFormAndValidation();
-  const [isEditable, setIsEditable] = useState(false);
 
   useEffect(() => {
-    setValues({
-      email: 'pochta@yandex.ru',
-      name: 'Виталий',
-    });
-  }, [setValues]);
+    setIsFetching(false);
+  }, [setIsFetching]);
 
+  // Подписывает на контекст CurrentUserContext
+  const { currentUser } = useContext(CurrentUserContext);
+
+  // Устанавливает данные currentUser в инпуты
+  useEffect(() => {
+    setValues({
+      name: currentUser.name,
+      email: currentUser.email,
+    });
+  }, [setValues, currentUser.name, currentUser.email]);
+
+  // Обработчик отправки формы
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (isValid) {
-      setIsEditable(false);
-    }
-  }
+    const { name, email } = values;
+    handleEditProfile({ name, email });
+  };
 
-  function handleEdit(evt) {
-    evt.preventDefault();
-    setIsEditable(true);
-  }
-
-  function handleSignOut(evt) {
-    evt.preventDefault();
-    history('/');
-  }
+  // Управляет состоянием кнопки отправки формы
+  const isButtonAble =
+    isValid &&
+    (values.name !== currentUser.name || values.email !== currentUser.email);
 
   return (
     <>
-      <Header isLoggedIn={true}/>
-        <main className="profile">
-          <form className="profile__form" onSubmit={handleSubmit}>
-            <h1 className="profile__title">Привет, {user.name}!</h1>
-            {isEditable ?
-              (<div className="profile__inputs-group">
-                <CustomInput
-                  name="name"
-                  placeholder="Имя"
-                  handler={handleChange}
-                  min="2"
-                  max="30"
-                  errorText={errors.name}
-                  value={values.name}
-                />
-                <CustomInput
-                  name="email"
-                  placeholder="E-mail"
-                  handler={handleChange}
-                  min="2"
-                  max="30"
-                  value={values.email}
-                  errorText={errors.email}
-                />
-              </div>)
-              : (<ul className="profile__list">
-                    <li className="profile__list-item">
-                      <span>Имя</span>
-                      <span>{user.name}</span>
-                    </li>
-                    <li className="profile__list-item">
-                      <span>E-mail</span>
-                      <span>{user.email}</span>
-                    </li>
-                </ul>)
-            }
-              {isEditable ? <div className="profile__buttons-group-edit">
-                              <span className="profile__error">При обновлении профиля произошла ошибка.</span>
-                              <Button type="submit" className="submit-button">Сохранить</Button>
-                            </div>
-                          : <div className="profile__buttons-group">
-                              <Button className="profile__button" onClick={handleEdit}>Редактировать</Button>
-                              <Button className="profile__button profile__button_type_signout" onClick={handleSignOut}>Выйти из аккаунта</Button>
-                            </div>
+      <Header isLoggedIn={isLoggedIn} isMobileMenuActive={isMobileMenuActive} onOpenMenu={onOpenMenu} onClose={onClose} windowSize={windowSize}/>
+      <main className="profile">
+      <div className="profile__container">
+        <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+        <form className="profile__form" onSubmit={handleSubmit}>
+          <ul className="profile__input-list">
+            <li className="profile__input-item">
+              <span className="profile__input-label">Имя</span>
+              <input
+                className={`profile__input ${errors.name && "profile__input_error"}`}
+                readOnly={isFetching && true}
+                id="profile__input-name"
+                type="text"
+                required
+                minLength="2"
+                maxLength="30"
+                pattern="^(?!\s)[A-Za-zА-Яа-я\-\s]+$"
+                name="name"
+                onChange={handleChange}
+                value={values.name ? values.name : ""}
+              />
+              <span id="error-profile-name" className="profile__error">
+                {errors.name}
+              </span>
+            </li>
+            <li className="profile__input-item">
+              <span className="profile__input-label">E-mail</span>
+              <input
+                className={`profile__input ${errors.name && "profile__input_error"}`}
+                readOnly={isFetching && true}
+                id="profile__input-email"
+                type="email"
+                pattern="^.+@.+\..+$"
+                name="email"
+                onChange={handleChange}
+                value={values.email ? values.email : ""}
+                required
+              />
+              <span id="error-profile-name" className="profile__error">
+                {errors.email}
+              </span>
+            </li>
+          </ul>
+          <div className="profile__buttons">
+            <button
+              disabled={!isButtonAble || isFetching ? true : false}
+              className={
+                !isButtonAble || isFetching
+                  ? "profile__button-edit profile__button-edit_disabled"
+                  : "profile__button-edit"
               }
-          </form>
-      </main>
-    </>
+              onClick={handleSubmit}
+            >
+              Редактировать
+            </button>
+            <button
+              className="profile__button-logout"
+              onClick={handleLogOut}
+            >
+              Выйти из аккаунта
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </>
   );
-}
+};

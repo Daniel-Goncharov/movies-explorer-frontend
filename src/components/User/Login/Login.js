@@ -1,30 +1,24 @@
-import './Login.css';
-import {useEffect} from 'react';
-import { useNavigate } from 'react-router';
-import CustomInput from '../../CustomInput/CustomInput';
-import Logo from '../../Logo/Logo';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
+import './Login.css';
+import Logo from '../../Logo/Logo';
+import CustomInput from '../../CustomInput/CustomInput';
 import Button from '../../Button/Button';
-import { Link } from 'react-router-dom';
 
 
-export default function Login() {
-  const history = useNavigate();
-  const {values, handleChange, errors, isValid, setValues } = useFormAndValidation();
-
-  useEffect(() => {
-    setValues({
-      email: 'pochta@yandex.ru',
-      password: 'password',
-    });
-  }, [setValues]);
+export default function Login({ handleLogin, isLoggedIn, isFetching }) {
+  let location = useLocation();
+  const {values, handleChange, errors, isValid } = useFormAndValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (isValid) {
-      history('/movies');
-    }
-  }
+    const { email, password } = values;
+    handleLogin({ email, password });
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to="/movies" state={{ from: location }} replace />;
+  };
 
   return (
     <section className="login">
@@ -36,26 +30,45 @@ export default function Login() {
         <CustomInput
           name="email"
           placeholder="E-mail"
-          value={values.email}
+          readOnly={isFetching && true}
           handler={handleChange}
           min="2"
           max="30"
+          pattern="^.+@.+\..+$"
           errorText={errors.email}
+          value={values.email ? values.email : ""}
         />
         <CustomInput
           type="password"
           name="password"
           placeholder="Пароль"
-          value={values.password}
+          readOnly={isFetching && true}
+          value={values.password ? values.password : ""}
           handler={handleChange}
-          min="8"
+          min="6"
           errorText={errors.password}
         />
-        <Button type="submit" className="submit-button submit-button_type_login">Войти</Button>
+        <Button
+          disabled={!isValid || isFetching ? true : false}
+          className={
+            !isValid || isFetching
+              ? "submit-button submit-button_type_login submit-button_disabled"
+              : "submit-button submit-button_type_login"
+          }
+          type="submit"
+        >
+          {isFetching ? "Загрузка..." : "Войти"}
+        </Button>
         <div className="form__footer">
-          Ещё не зарегистрированы? <Link to={'/signup'} className="form__link">Регистрация</Link>
+          Ещё не зарегистрированы?
+          <Link
+            to={"/signup"}
+            className="form__link"
+          >
+            Регистрация
+          </Link>
         </div>
       </form>
     </section>
-  )
-}
+  );
+};

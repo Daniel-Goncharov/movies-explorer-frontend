@@ -1,31 +1,24 @@
+import { Link, Navigate, useLocation } from 'react-router-dom';
+import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
 import './Register.css';
-import {useEffect} from 'react';
-import { useNavigate } from 'react-router';
 import CustomInput from '../../CustomInput/CustomInput';
 import Logo from '../../Logo/Logo';
-import useFormAndValidation from '../../../vendor/hooks/useFormAndValidation';
 import Button from '../../Button/Button';
-import { Link } from 'react-router-dom';
 
 
-export default function Login() {
-  const history = useNavigate();
-  const {values, handleChange, errors, isValid, setValues } = useFormAndValidation();
+export default function Login({ handleRegister, isLoggedIn, isFetching }) {
+  let location = useLocation();
+  const {values, handleChange, errors, isValid } = useFormAndValidation();
 
-  useEffect(() => {
-    setValues({
-      name: 'Виталий',
-      email: 'pochta@yandex.ru',
-      password: 'password',
-    });
-  }, [setValues]);
+function handleSubmit(evt) {
+  evt.preventDefault();
+  const { name, email, password } = values;
+  handleRegister({ name, email, password });
+};
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    if (isValid) {
-      history('/signin');
-    }
-  }
+if (isLoggedIn) {
+  return <Navigate to="/movies" state={{ from: location }} replace />;
+}
 
   return (
     <section className="regisrer">
@@ -37,35 +30,58 @@ export default function Login() {
         <CustomInput
           name="name"
           placeholder="Имя"
+          type="text"
+          readOnly={isFetching && true}
           handler={handleChange}
           min="2"
           max="30"
+          pattern="^(?!\s)[A-Za-zА-Яа-я\-\s]+$"
           errorText={errors.name}
-          value={values.name}
+          value={values.name ? values.name : ""}
         />
         <CustomInput
           name="email"
           placeholder="E-mail"
-          value={values.email}
+          type="email"
+          readOnly={isFetching && true}
           handler={handleChange}
           min="2"
           max="30"
+          pattern="^.+@.+\..+$"
           errorText={errors.email}
+          value={values.email ? values.email : ""}
         />
         <CustomInput
-          type="password"
           name="password"
           placeholder="Пароль"
-          value={values.password}
+          type="password"
+          readOnly={isFetching && true}
           handler={handleChange}
-          min="8"
+          min="6"
           errorText={errors.password}
+          value={values.password ? values.password : ""}
         />
-        <Button type="submit" className="submit-button submit-button_type_regisrer">Зарегистрироваться</Button>
+        <Button
+          disabled={!isValid || isFetching ? true : false}
+          className={
+            !isValid || isFetching
+              ? "submit-button submit-button_type_login submit-button_disabled"
+              : "submit-button submit-button_type_login"
+          }
+          type="submit"
+        >
+          {isFetching ? "Загрузка..." : "Зарегистрироваться"}
+        </Button>
         <div className="form__footer">
-        Уже зарегистрированы? <Link to={'/signin'} className="form__link">Войти</Link>
+          Уже зарегистрированы?
+          <Link
+            to={"/signin"}
+            className="form__link"
+          >
+            Войти
+          </Link>
         </div>
       </form>
     </section>
-  )
-}
+  );
+};

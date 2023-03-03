@@ -1,13 +1,33 @@
-import './MoviesCardList.css'
-import MoviesCard from '../MoviesCard/MoviesCard'
-import { demoCard } from '../../utils/constant';
+import React from 'react';
+import './MoviesCardList.css';
+import MoviesCard from '../MoviesCard/MoviesCard';
+import Error from '../Error/Error';
 
-export default function MoviesCardList({ isSavedMovies = false }) {
+function MoviesCardList({
+  movies,
+  onCardSave,
+  onCardDelete,
+  savedMovies,
+}) {
   return (
-    <ul className="movies-card-list">
-      {demoCard.map((item, index) => {
-        return <MoviesCard card={item} key={index} isSavedMovies={isSavedMovies} />;
-      })}
-    </ul>
+    <>
+      {movies === null || movies.length === 0 ? (
+        <Error>Ничего не найдено</Error>
+      ) : (
+        <ul className="movies-card-list">
+          {movies.map((movie) => {
+            return <MoviesCard
+              movie={movie}
+              key={movie.id ?? movie.movieId}
+              onCardSave={onCardSave}
+              onCardDelete={onCardDelete}
+              savedMovies={savedMovies}
+            />
+          })}
+        </ul>
+      )}
+    </>
   );
 };
+
+export default React.memo(MoviesCardList);
